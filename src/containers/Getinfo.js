@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Character from '../components/Character';
 
 
-const API = 'https://swapi.co/api/';
-const DEFAULT_QUERY = 'people/';
 
-class Getinfo extends Component {
+
+class Getinfo extends PureComponent {
  
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class Getinfo extends Component {
   }
 
   componentDidMount() {
-    fetch(API+DEFAULT_QUERY)
+    fetch(this.props.currentPage )
       .then(response => response.json())
       .then(data => this.setState({ data })
       );
@@ -30,6 +29,9 @@ class Getinfo extends Component {
               <h3 className="mx-auto">Loading...</h3>
           )
       }else{
+
+        this.props.handleNextPage(informacion.next)
+        console.log(informacion)
         return(
           <div className="container-fluid">
             <div className="row">
