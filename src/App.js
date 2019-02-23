@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Getinfo from './containers/Getinfo';
-//import NextButton from './components/Nextbutton';
 
 
 const API_URL = 'https://swapi.co/api/people/';
