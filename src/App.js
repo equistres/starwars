@@ -33,14 +33,28 @@ class App extends PureComponent {
     //SETEO EL ESTADO, PERO AL SER ASINCRONO, PONGO UN CALLBACK PARA EJECUTARSE LUEGO DE ESTAR ACTUALIZADO.
     this.setState({ nextPage: this.state.data.next }, this.updatePage);
   }
+  handleClickPrev = () => {
+    //SETEO EL ESTADO, PERO AL SER ASINCRONO, PONGO UN CALLBACK PARA EJECUTARSE LUEGO DE ESTAR ACTUALIZADO.
+    if(this.state.data.previous){
+      this.setState({ nextPage: this.state.data.previous }, this.updatePage);
+    }
+  }
   render() {
+    let buttons;
+    if(this.state.data){
+      if(this.state.data.previous){ 
+        buttons = <div className="d-flex justify-content-end"><button onClick={this.handleClickPrev} type="button" className="btn btn-primary">Prev</button><button onClick={this.handleClickNext} type="button" className="btn btn-primary">Next</button></div>
+      }else{
+        buttons = <div className="d-flex justify-content-end"><button type="button" className="btn btn-primary" disabled>Prev</button><button onClick={this.handleClickNext} type="button" className="btn btn-primary">Next</button></div>
+      }
+    }
     return (
       <div className="App">
         <header className="App-header">
         <Navigation />
+        {buttons}
         <Getinfo data={this.state.data}/>
-        <button onClick={this.handleClickNext}>next page</button>
-        {/* <NextButton data={this.state.data}/> */}
+        {buttons}
         </header>
       </div>
     );

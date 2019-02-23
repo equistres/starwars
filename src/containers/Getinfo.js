@@ -11,7 +11,7 @@ class Getinfo extends Component {
           )
       }else{
         return(
-          <div className="container-fluid">
+          <div className="container-fluid" style={{maxWidth: '1900px'}}>
             <div className="row">
             {
               informacion.results.map((item) => {
