@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Getinfo from './containers/Getinfo';
-import NextButton from './components/Nextbutton';
 
 
 const API_URL = 'https://swapi.co/api/people/';
@@ -26,22 +25,20 @@ class App extends PureComponent {
   }
   handleClickNext = () =>{
     console.log("entro en handleClickNext", this.state.data.next);
-    console.log(this.state.nextPage)
+    this.state.nextPage = this.state.data.next
+    //this.setState({ nextPage:  this.state.data.next})
+    console.log("el estado despues de cambiarlo", this.state.nextPage)
+    this.componentDidMount()
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    
   }
   render() {
-    let prevButton = ">";
-    if(this.state.data!=null){
-      if(this.state.data.previous!=null){
-        prevButton = this.state.data.previous
-      }
-    }
     return (
       <div className="App">
         <header className="App-header">
         <Navigation />
         <Getinfo data={this.state.data}/>
         <button onClick={this.handleClickNext}>next page</button>
-        <NextButton prevButton={prevButton}/>
         </header>
       </div>
     );
