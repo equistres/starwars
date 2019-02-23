@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Character from '../components/Character';
 
-
-const API = 'https://swapi.co/api/';
-const DEFAULT_QUERY = 'people/';
-
 class Getinfo extends Component {
   render(){
       const informacion = this.props.data;
@@ -22,7 +18,6 @@ class Getinfo extends Component {
                 return(
                   <Character key={item.name} data={item}/>
                 )
-                
               })
             }
             </div>

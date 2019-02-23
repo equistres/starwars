@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Getinfo from './containers/Getinfo';
+//import NextButton from './components/Nextbutton';
 
 
 const API_URL = 'https://swapi.co/api/people/';
@@ -23,14 +24,14 @@ class App extends PureComponent {
       .then(data => this.setState({ data })
       );
   }
-  handleClickNext = () =>{
-    console.log("entro en handleClickNext", this.state.data.next);
-    this.state.nextPage = this.state.data.next
-    //this.setState({ nextPage:  this.state.data.next})
-    console.log("el estado despues de cambiarlo", this.state.nextPage)
-    this.componentDidMount()
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    
+  updatePage = () =>{
+    //ESTO NO SE SI ESTA BIEN????
+    //LLAMO PARA QUE SE VUELVA A MONTAR EL COMPONENTE LLAMANDO A LA NUEVA URL
+    this.componentDidMount();
+  }
+  handleClickNext = () => {
+    //SETEO EL ESTADO, PERO AL SER ASINCRONO, PONGO UN CALLBACK PARA EJECUTARSE LUEGO DE ESTAR ACTUALIZADO.
+    this.setState({ nextPage: this.state.data.next }, this.updatePage);
   }
   render() {
     return (
@@ -39,6 +40,7 @@ class App extends PureComponent {
         <Navigation />
         <Getinfo data={this.state.data}/>
         <button onClick={this.handleClickNext}>next page</button>
+        {/* <NextButton data={this.state.data}/> */}
         </header>
       </div>
     );
