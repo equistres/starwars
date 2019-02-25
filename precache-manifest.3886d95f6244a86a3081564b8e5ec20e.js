@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/starwars/static/media/logo.eeecfb48.png"
   },
   {
-    "revision": "175399071c324ec4406ac4e9d2f495b2",
+    "revision": "154743105770248efc3ecc48077f87c2",
     "url": "/starwars/index.html"
   }
 ];
